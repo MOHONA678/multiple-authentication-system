@@ -19,12 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('web','admin')->group(function(){
+
 Route::get('/admin',[AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin',[AdminController::class, 'store'])->name('admin.store');
 Route::post('/admin/logout',[AdminController::class, 'destroy'])->name('admin.destroy');
 
-});
+
 
 
 Route::prefix('admin')->group(function(){
