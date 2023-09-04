@@ -16,14 +16,25 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+            <div class="bg-white shadow-md sm:rounded-lg w-[400px]">
+                <div class="flex items-center justify-center pt-8">
+                    <a href="/">
+                        {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+                        <img src="{{ asset('avatar.png') }}" class=" w-32 h-32" alt="" />
+                    </a>
+                </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
+                @if (isset($title))
+                    <div class="mt-6">
+                    <!-- Form Title -->
+                        {{ $title }}
+                    </div>
+                @endif
+
+
+                <div class="w-full sm:max-w-md mt-6 px-6 py-4 overflow-hidden">
+                    {{ $slot }}
+                </div>
             </div>
         </div>
     </body>

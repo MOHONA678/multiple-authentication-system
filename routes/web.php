@@ -19,16 +19,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::middleware('guest:admin')->group(function() {
 Route::get('/admin',[AdminController::class, 'login'])->name('admin.login');
 Route::post('/admin',[AdminController::class, 'store'])->name('admin.store');
-Route::post('/admin/logout',[AdminController::class, 'destroy'])->name('admin.destroy');
+
+});
 
 
+Route::middleware('auth:admin')->prefix('admin')->group(function(){
 
-
-Route::prefix('admin')->group(function(){
 Route::get('/dashboard',[AdminController::class, 'index'])->name('admin.dashboard');
+Route::post('/logout',[AdminController::class, 'destroy'])->name('admin.destroy');
 });
 
 Route::get('/dashboard', function () {
