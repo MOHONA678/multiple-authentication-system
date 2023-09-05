@@ -43,12 +43,15 @@ class AdminController extends Controller
      */
     public function destroy(Request $request)
     {
+         $request->session()->forget('admin_id');
+
         Auth::guard('admin')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
+        
+       
         return redirect('/admin');
     }
 }
